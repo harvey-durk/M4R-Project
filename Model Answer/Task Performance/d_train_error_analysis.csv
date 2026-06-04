@@ -1,0 +1,18 @@
+Model,Invalid Answer,Column Selection Error (CSE),Statistical Task Confusion (STC),Applicability Error (AE),Mixed Errors (CSE+STC),Mixed Errors (CSE+AE),Mixed Errors (STC+AE),Mixed Errors (CSE+STC+AE)
+$\mathbb{D}_{\mathrm{train}}$ original,0.00688,0.1307,0.01978,0.15735,0.01462,0.03697,0.0,0.0
+$\mathbb{D}_{\mathrm{train}}$ tuned,0.0129,0.14531,0.00774,0.1135,0.00946,0.01892,0.0,0.0
+$\mathbb{D}_{\mathrm{train}}$+stateval,0.01376,0.14531,0.00774,0.11522,0.0086,0.02064,0.0,0.0
+stateval+$\mathbb{D}_{\mathrm{train}}$,0.0043,0.11006,0.00946,0.1307,0.01376,0.0172,0.0,0.0
+$\mathbb{D}_{\mathrm{train}}$+logic,0.02236,0.13758,0.01462,0.04127,0.01892,0.00774,0.0,0.0
+
+$\mathbb{D}_{\mathrm{train}}$ original,0.0,0.03353,0.01462,0.15907,0.0129,0.00946,0.0,0.0
+$\mathbb{D}_{\mathrm{train}}$ tuned,0.0,0.02494,0.00688,0.14789,0.00946,0.0086,0.0,0.0
+$\mathbb{D}_{\mathrm{train}}$+stateval,0.0,0.0258,0.00516,0.14789,0.00946,0.00516,0.0,0.0
+stateval+$\mathbb{D}_{\mathrm{train}}$,0.0,0.02408,0.00516,0.13242,0.01376,0.0086,0.0,0.0
+$\mathbb{D}_{\mathrm{train}}$+logic,0.0,0.0258,0.01376,0.05159,0.01548,0.00172,0.0,0.0
+
+$\mathbb{D}_{\mathrm{train}}$ original,0.00172,0.03869,0.0086,0.13242,0.0129,0.01118,0.0,0.0
+$\mathbb{D}_{\mathrm{train}}$ tuned,0.0,0.02666,0.00946,0.11952,0.01204,0.00774,0.0,0.0
+$\mathbb{D}_{\mathrm{train}}$+stateval,0.0,0.03009,0.00688,0.11866,0.01204,0.00774,0.0,0.0
+stateval+$\mathbb{D}_{\mathrm{train}}$,0.0,0.03783,0.00774,0.15133,0.01204,0.00774,0.0,0.0
+$\mathbb{D}_{\mathrm{train}}$+logic,0.00086,0.03095,0.01634,0.04987,0.0129,0.00172,0.0,0.0

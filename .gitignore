@@ -1,0 +1,37 @@
+# Models: ignore contents but keep the folder
+Models/*
+!Models/.gitkeep
+
+'Model Answer'/'Origin Answer'/*
+!'Model Answer'/'Origin Answer'/.gitkeep
+
+'Model Answer'/'Processed Answer'/*
+!'Model Answer'/'Processed Answer'/.gitkeep
+
+'Model Answer'/'Task Performance'/'Columns Selection'/*
+!'Model Answer'/'Task Performance'/'Columns Selection'/.gitkeep
+
+'Model Answer'/'Task Performance'/'Methods Selection'/*
+!'Model Answer'/'Task Performance'/'Methods Selection'/.gitkeep
+
+'Model Answer'/'Task Performance'/'Selection Overall'/All*
+!'Model Answer'/'Task Performance'/'Selection Overall'/All/.gitkeep
+
+Finetuning/saves/*
+!Finetuning/saves/.gitkeep
+
+Script/outputs/*
+Script/errors/*
+
+StatQA/*
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.so
+*.egg-info/
+dist/
+build/
+
+EOF

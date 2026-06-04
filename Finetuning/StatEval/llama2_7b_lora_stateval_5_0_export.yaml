@@ -1,0 +1,14 @@
+### model
+model_name_or_path: ../Models/Llama-2-7b-chat-hf
+adapter_name_or_path: ../Finetuning/saves/llama2-7b/lora/stateval_5_0
+
+# Template configuration
+template: llama2
+
+### method
+finetuning_type: lora
+
+### export
+export_dir: ../Models/StatEval/Llama-2-7b-chat-hf-stateval-5_0
+export_size: 2
+export_legacy_format: false

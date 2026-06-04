@@ -1,0 +1,14 @@
+### model
+model_name_or_path: ../Models/StatEval/Meta-Llama-3-8b-stateval-1_5
+adapter_name_or_path: ../Finetuning/saves/llama3-8b/lora/stateval_sft_28
+
+# Template configuration
+template: llama3
+
+### method
+finetuning_type: lora
+
+### export
+export_dir: ../Models/StatEval_sft/Meta-Llama-3-8b-stateval-sft-28
+export_size: 2
+export_legacy_format: false

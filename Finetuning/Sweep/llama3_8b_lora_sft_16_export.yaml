@@ -1,0 +1,14 @@
+### model
+model_name_or_path: ../Models/Meta-Llama-3-8b
+adapter_name_or_path: ../Finetuning/saves/llama3-8b/lora/sft_16
+
+# Template configuration
+template: llama3
+
+### method
+finetuning_type: lora
+
+### export
+export_dir: ../Models/Sweep/Meta-Llama-3-8b-sft-16
+export_size: 2
+export_legacy_format: false
