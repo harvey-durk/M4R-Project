@@ -144,14 +144,16 @@ def question_mentions(text, *keywords):
 # Per-category rule functions (CTT and VT)
 def contingency_methods(cols, parsed):
     methods  = []
-    n = cols[0].num_rows if cols else 1000
-    cat_cols = [c for c in cols if c.data_type == "categorical"]
-    n_cols = len(cat_cols)
-    if (n >= 40) and (n_cols == 2):
-        methods.append("Chi-square Independence Test")
-    if (n < 500) and (n_cols == 2):
-        methods.append("Fisher Exact Test")
-    return methods if methods else ["Mantel-Haenszel Test"]
+    n_rows = cols[0].num_rows
+    n_cols = len([c for c in cols if c.data_type == "categorical"])
+    if n_cols == 2:
+        if n_rows >= 40:
+            methods.append("Chi-square Independence Test")
+        elif n_rows < 500:
+            methods.append("Fisher Exact Test")
+    elif n_cols == 3:
+        methods.append("Mantel-Haenszel Test")
+    return methods
 
 def variance_methods(cols, parsed):
     quant_cols = [c for c in cols if c.data_type == "quantitative"]
