@@ -114,7 +114,7 @@ def error_analysis(work_dir):
 '''
 Plotting the error analysis bar chart - for selected file order
 '''
-def plot_error_analysis(file_path, output_name: None, subplot_titles: None):
+def plot_error_analysis(file_path, output_name: None, subplot_titles: None, x_label: None):
     data = pd.read_csv(file_path, skip_blank_lines=False)
     empty_rows = data.index[data.isnull().all(1)]
     datasets = []
@@ -178,7 +178,11 @@ def plot_error_analysis(file_path, output_name: None, subplot_titles: None):
                 ax.tick_params(axis='both', which='both', length=0)  # Hide ticks
                 ax.set_yticklabels([])
             else:
-                ax.set_ylabel('Error Rate', fontsize=18)
+                ax.set_ylabel('Error Rate (proportion of total responses)', fontsize=20)
+            
+    # Add global x-label if provided
+    if x_label is not None:
+        fig.supxlabel(x_label, fontsize=20)
     
 
     # fig.suptitle('Error Type Analysis Across Experiments', fontsize=20)  # Set a large title for the entire picture
@@ -205,25 +209,54 @@ if __name__ == '__main__':
     # Plot bar chart for error analysis - for selected file order
     plot_error_analysis('Model Answer/Task Performance/baseline_error_analysis.csv', 
                         output_name='Figures/Baseline Error Analysis', 
-                        subplot_titles = ['Llama 2', 'Llama 3', '$\mathbb{D}_{\mathrm{train}}$ Fine-tuned'])
+                        subplot_titles = ['Llama 2', 'Llama 3', '$\mathbb{D}_{\mathrm{train}}$ Fine-tuned'],
+                        x_label=None)
 
     plot_error_analysis('Model Answer/Task Performance/d_train_tuning_error_analysis.csv', 
                         output_name='Figures/D-train Tuning Error Analysis', 
                         subplot_titles = ['Llama-2-7b $\mathbb{D}_{\mathrm{train}}$ Fine-tuned', 
                                           'Llama-3-8b $\mathbb{D}_{\mathrm{train}}$ Fine-tuned', 
-                                          'Llama-3-8b-Instruct $\mathbb{D}_{\mathrm{train}}$ Fine-tuned'])
+                                          'Llama-3-8b-Instruct $\mathbb{D}_{\mathrm{train}}$ Fine-tuned'],
+                        x_label='LoRA Learning Rate')
 
-    plot_error_analysis('Model Answer/Task Performance/stateval_tuning_error_analysis.csv', 
-                        output_name='Figures/StatEval Tuning Error Analysis', 
-                        subplot_titles = ['Llama-2-7b mini-StatEval-foundational Fine-tuned', 
-                                          'Llama-3-8b mini-StatEval-foundational Fine-tuned', 
-                                          'Llama-3-8b-Instruct mini-StatEval-foundational Fine-tuned'])
+    plot_error_analysis('Model Answer/Task Performance/stateval_2_7b_tuning_error_analysis.csv', 
+                        output_name='Figures/StatEval 2-7b Tuning Error Analysis', 
+                        subplot_titles = ['Llama-2-7b 0-shot Comparison', 
+                                          'Llama-2-7b 1-shot Comparison'],
+                        x_label='mini-StatEval-foundational LoRA Learning Rate')
 
-    plot_error_analysis('Model Answer/Task Performance/d_train_error_analysis.csv', 
-                        output_name='Figures/D-train Error Analysis', 
+    plot_error_analysis('Model Answer/Task Performance/stateval_3_8b_tuning_error_analysis.csv', 
+                        output_name='Figures/StatEval 3-8b Tuning Error Analysis', 
+                        subplot_titles = ['Llama-3-8b 0-shot-CoT Comparison', 
+                                          'Llama-3-8b 1-shot-CoT Comparison'],
+                        x_label='mini-StatEval-foundational LoRA Learning Rate')
+
+    plot_error_analysis('Model Answer/Task Performance/stateval_3_8b_instruct_tuning_error_analysis.csv', 
+                        output_name='Figures/StatEval 3-8b-Instruct Tuning Error Analysis', 
+                        subplot_titles = ['Llama-3-8b-Instruct 0-shot Comparison',
+                                          'Llama-3-8b-Instruct 0-shot-CoT Comparison'],
+                        x_label='mini-StatEval-foundational LoRA Learning Rate')
+
+    plot_error_analysis('Model Answer/Task Performance/d_train_stateval_error_analysis.csv', 
+                        output_name='Figures/D-train+StatEval Error Analysis', 
+                        subplot_titles = ['Llama-2-7b \n $\mathbb{D}_{\mathrm{train}}$ then mini-StatEval-foundational \n Fine-tuned', 
+                                          'Llama-3-8b \n $\mathbb{D}_{\mathrm{train}}$ then mini-StatEval-foundational \n Fine-tuned', 
+                                          'Llama-3-8b-Instruct \n $\mathbb{D}_{\mathrm{train}}$ then mini-StatEval-foundational \n Fine-tuned'],
+                        x_label=None)
+
+    plot_error_analysis('Model Answer/Task Performance/stateval_d_train_error_analysis.csv', 
+                        output_name='Figures/StatEval+D-train Error Analysis', 
+                        subplot_titles = ['Llama-2-7b \n mini-StatEval-foundational then $\mathbb{D}_{\mathrm{train}}$ \n Fine-tuned', 
+                                          'Llama-3-8b \n mini-StatEval-foundational then $\mathbb{D}_{\mathrm{train}}$ \n Fine-tuned', 
+                                          'Llama-3-8b-Instruct \n mini-StatEval-foundational then $\mathbb{D}_{\mathrm{train}}$ \n Fine-tuned'],
+                        x_label=None)
+
+    plot_error_analysis('Model Answer/Task Performance/logic_error_analysis.csv', 
+                        output_name='Figures/Logic Error Analysis', 
                         subplot_titles = ['Llama-2-7b', 
                                           'Llama-3-8b', 
-                                          'Llama-3-8b-Instruct'])
+                                          'Llama-3-8b-Instruct'],
+                        x_label=None)
 
     # plot_error_analysis('Model Answer/Task Performance/selected error_analysis_summary new.csv', 
     #                     output_name='Error Analysis Bar Chart', 
