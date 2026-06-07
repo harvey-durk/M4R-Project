@@ -33,7 +33,7 @@ The four Llama models of interest: [Llama-2-7b-chat-hf](https://huggingface.co/m
 
 # Baseline Reproduction
 
-To establish a baseline for comparison, the experimental results of Zhu et al. [1] were reproduced using the four base Llama models and the $\mathbb{D}_{\text{train}}$-fine-tuned variants.
+To establish a baseline for comparison, the experimental results of Zhu et al. [1] were reproduced using the four base Llama models and the $𝔻_\text{train}$-fine-tuned variants.
 
 ## Base Models
 
@@ -94,7 +94,7 @@ Evaluation/llama_sft_stateval_evaluation.py --model_type "2_7b_sft_stateval_0_5"
 
 ## Fine-Tuning on mini-StatEval-foundational followed by $𝔻_\text{train}$
 
-The learning rates corresponding to best performance using 0-shot for $𝔻_\text{train}$-only fine-tuned models (again, these are 8.9e-4 for Llama-2-7b-chat-hf and 2.8e-4 for Meta-Llama-3-8b and Meta-Llama-3-8b-Instruct) and mini-StatEval-foundational-only fine-tuned models (1.5e-5 for Llama-2-7b-chat-hf and Meta-Llama-3-8b, and 1.5e-4 for Meta-Llama-3-8b-Instruct) are used for fine-tuning of the base models over mini-StatEval-foundational followed by $𝔻_\text{train}. In practice, the best performing mini-StatEval-foundational fine-tuned models are further fine-tuned on $𝔻_\text{train}$ using the fine-tuning and export files in `Finetuning/StatEval_sft/`. The remaining hyperparameters remain the same as what is used in all other $𝔻_\text{train}$ fine-tuning and evaluation over mini-StatQA using 0-shot is carried out using `Evaluation/llama_stateval_sft_evaluation.py` via:
+The learning rates corresponding to best performance using 0-shot for $𝔻_\text{train}$-only fine-tuned models (again, these are 8.9e-4 for Llama-2-7b-chat-hf and 2.8e-4 for Meta-Llama-3-8b and Meta-Llama-3-8b-Instruct) and mini-StatEval-foundational-only fine-tuned models (1.5e-5 for Llama-2-7b-chat-hf and Meta-Llama-3-8b, and 1.5e-4 for Meta-Llama-3-8b-Instruct) are used for fine-tuning of the base models over mini-StatEval-foundational followed by $𝔻_\text{train}$. In practice, the best performing mini-StatEval-foundational fine-tuned models are further fine-tuned on $𝔻_\text{train}$ using the fine-tuning and export files in `Finetuning/StatEval_sft/`. The remaining hyperparameters remain the same as what is used in all other $𝔻_\text{train}$ fine-tuning and evaluation over mini-StatQA using 0-shot is carried out using `Evaluation/llama_stateval_sft_evaluation.py` via:
 
 ```
 python Evaluation/llama_stateval_sft_evaluation.py --model_type "2_7b_stateval_sft" --dataset_name "mini-StatQA" --trick "zero-shot"
@@ -102,7 +102,7 @@ python Evaluation/llama_stateval_sft_evaluation.py --model_type "2_7b_stateval_s
 
 # Neuro-Symbolic AI Framework
 
-The neuro-symbolic AI framework is implemented solely via the `Evaluation/llama_sft_logic_evaluation.py` script. The first section defines the functions needed for parsing of the prompt, parsing of the LLM's output, selecting task category from the model's chosen methods and applying the rule-based system for selecting applicable methods. These functions are then used in the second section which implements the neuro-symbolic framwork, by applying the rule-based system to the responses from the LLM, which are generated in the same way as in the original evaluation script: `Evaluation/llama_evaluation.py`. `Evaluation/llama_sft_logic_evaluation.py` is then used to generate responses of the neuro-symbolic framework used in conjunction with the best performing $𝔻_\text{train}-only fine-tuned models using 0-shot via:
+The neuro-symbolic AI framework is implemented solely via the `Evaluation/llama_sft_logic_evaluation.py` script. The first section defines the functions needed for parsing of the prompt, parsing of the LLM's output, selecting task category from the model's chosen methods and applying the rule-based system for selecting applicable methods. These functions are then used in the second section which implements the neuro-symbolic framwork, by applying the rule-based system to the responses from the LLM, which are generated in the same way as in the original evaluation script: `Evaluation/llama_evaluation.py`. `Evaluation/llama_sft_logic_evaluation.py` is then used to generate responses of the neuro-symbolic framework used in conjunction with the best performing $𝔻_\text{train}$-only fine-tuned models using 0-shot via:
 
 ```
 python Evaluation/llama_sft_logic_evaluation.py --model_type "2_7b_sft_logic"
